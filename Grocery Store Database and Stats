@@ -1,0 +1,36 @@
+CREATE TABLE Tays_Store 
+(CLothing Text, 
+Quanity Integer, 
+Price INTEGER,
+code INTEGER,
+fun text);
+INSERT INTO Tays_store VALUES ('Pink shirt', 5, 15.99,222,'t');
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+INSERT INTO Tays_store VALUES ('blue shirt', 5, 16.99,232,'x');
+INSERT INTO Tays_store VALUES ('green shirt', 5, 17.99,232,'b');
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+SELECT * FROM Tays_Store;
+
+SELECT MAX(price) FROM tays_store;
