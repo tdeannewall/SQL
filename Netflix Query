@@ -1,0 +1,68 @@
+
+#In this SQL code, I'm querying a database that's holding Nexflix data to answer questions about the data. 
+
+#1. How many movie titles are there in the database? (movies only, not tv shows) 
+select count(*) 
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE type='Movie';
+
+#2. When was the most recent batch of tv shows and/or movies added to the database? 
+select max(date(date_added))
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info";
+
+#3. List all the movies and tv shows in alphabetical order. 
+select title
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+ORDER BY title asc;
+
+#4. Who was the Director for the movie Bright Star? 
+select 
+director
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
+LEFT JOIN  "CharlotteChaze/BreakIntoTech"."netflix_people" people
+ON titles.show_id=people.show_id
+where titles.title='Bright Star'
+
+#5. What is the oldest movie in the database and what year was it made? 
+select title, min(release_year) 
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE type='Movie'
+GROUP BY title, release_year
+ORDER BY release_year asc
+LIMIT 1;
+
+-- Example query (PostgreSQL):
+--SELECT count(*) FROM "CharlotteChaze/BreakIntoTech"."netflix_people";
+SELECT
+people.show_id
+,people.director
+,titles.title
+,titles.type
+FROM "CharlotteChaze/BreakIntoTech"."netflix_people" people
+
+
+LEFT JOIN "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
+
+ON people.show_id = titles.show_id;
+-- Tips:
+-- (*) Repos must be fully qualified! The full syntax is: "owner/repo"."table"
+--     Notice that both the "owner/repo" and "table" are wrapped in double quotes.
+-- (*) Repos are not islands!
+--     You can cross-join between any two repos on bit.io. Try running the cross-join below.
+
+-- This query joins a private table with a table from a public repo.
+-- If you don't have these two tables in your demo repo, you can download them here:
+-- (*) https://storage.googleapis.com/bitdotio-demo-datasets/atl_parcel_attr.csv
+-- (*) https://storage.googleapis.com/bitdotio-demo-datasets/atl_home_sales.csv
+
+-- SELECT
+--   "FIPS",
+--   PERCENTILE_CONT(0.5) WITHIN GROUP(ORDER BY "Price") AS "median_sale_price",
+--   AVG("rpl_themes") AS "social_vulnerability_rank"
+-- FROM "CharlotteChaze/demo_repo"."atl_home_sales" AS Sale
+-- LEFT JOIN "CharlotteChaze/demo_repo"."atl_parcel_attr" AS Parcel
+--   ON Sale."ParcelID" = Parcel."ParcelID"
+-- LEFT JOIN "bitdotio/cdc_social_vulnerability"."census_tract_2018" AS CDC
+--   ON Parcel."FIPS" = CDC."fips"
+-- GROUP BY "FIPS"
+-- ORDER BY "median_sale_price" ASC
