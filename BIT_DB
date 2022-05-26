@@ -1,0 +1,20 @@
+/*How many orders were places in January*/
+SELECT COUNT(orderid)
+FROM BIT_DB.jansales;
+
+/*How many orders were for iPhones?*/
+SELECT COUNT(orderid)
+FROM BIT_DB.jansales
+WHERE product = 'iPhone';
+
+/*Select the customer account numbers for all the orders that were placed in February.*/
+SELECT acctnum
+FROM BIT_DB.customers cust
+
+INNER JOIN BIT_DB.FebSales Feb
+ON cust.order_id=FEB.orderid;
+
+/*What is the total revenue for each product sold in January?*/
+SELECT distinct Product, price
+FROM BIT_DB.JanSales
+WHERE  price in (SELECT min(price) FROM BIT_DB.JanSales)
